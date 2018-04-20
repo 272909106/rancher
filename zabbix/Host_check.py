@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/local/bin/python3.5
 # -*- coding:utf-8 -*-
 # author jinxj
 
@@ -45,33 +45,18 @@ class Hosts():
 
 
 if __name__ == '__main__':
-    # 预生产环境key和secret
-    access_key = '30D7A3531D10618F6B11'
-    secret_key = '69P2DbiH2iQUFHrzG16KheXKkFA8sjokhEvtPRsr'
+    # 生产环境key和secret
+    access_key = 'xxxxx'
+    secret_key = 'xxxxxx'
 
     code = (access_key, secret_key)
-    hosts_url = 'http://10.100.17.124:8080/v2-beta/projects/1a5/hosts?limit=-1'
+    hosts_url = 'http://x.x.com.cn/v2-beta/projects/1a5/hosts?limit=-1'
     rancher_hosts = Hosts(hosts_url, code)
     host_list = rancher_hosts.doubleformat()
     # print(host_list)
 
-
-    # def checkhost(self):
-    #     host_dic = self.doubleformat()
-    #     host_error_list = []
-    #     # print(host_dic)
-    #
-    #     for i in host_dic:
-    #         # print(host_dic[i])
-    #         if host_dic[i]['state'] == 'active':
-    #             host_error_list.append(host_dic[i]['hostname'])
-    #     return host_error_list
-    # hostname=sys.argv[1]
-    hostname='vmlin5791'
+    hostname=sys.argv[1]
     for i in host_list:
-        # print(i)
-        # print(host_list[i]['hostname'])
-        # print(host_list[i]['state'])
         if host_list[i]['hostname'] == hostname and host_list[i]['state'] == 'active':
             print(1)
         elif host_list[i]['hostname'] == hostname and host_list[i]['state'] != 'active':

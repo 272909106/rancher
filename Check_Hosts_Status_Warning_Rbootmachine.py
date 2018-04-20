@@ -151,13 +151,13 @@ def reboot_vm(Host, User, Password, Port, DnsName):
 
 
 if __name__ == '__main__':
-    # 预生产环境key和secret
-    access_key = '30D7A3531D10618F6B11'
-    secret_key = '69P2DbiH2iQUFHrzG16KheXKkFA8sjokhEvtPRsr'
+    # 环境key和secret
+    access_key = 'xxx'
+    secret_key = 'xxx'
 
     code = (access_key, secret_key)
-    hosts_url = 'http://10.100.17.124:8080/v2-beta/projects/1a5/hosts?limit=-1'
-    account = 'jinxj'
+    hosts_url = 'http://x.x.x.:8080/v2-beta/projects/1a5/hosts?limit=-1'
+    account = 'xxx'
 
     rancher_hosts = Hosts(hosts_url, code)
     # print(rancher_hosts.doubleformat())
@@ -166,10 +166,15 @@ if __name__ == '__main__':
 
     """
     重启主机引用
+	Host vmware 主机地址
+	User vmware 主机用户
+	Password  vmware 主机密码
+	Port  vmware 主机端口
+	Host_list 虚拟主机名字
     """
-    Host = '10.96.140.157'
-    User = 'open\jinxj'
-    Password = 'oa123456'
+    Host = 'x.x.x.x'
+    User = 'xxx'
+    Password = 'xxxx'
     Port = '443'
     host_list = ['k8s-m']
     if len(host_list) == 0:
@@ -179,11 +184,11 @@ if __name__ == '__main__':
             reboot_vm(Host, User, Password, Port,i)
             result_v = '{0}生产环境rancher集群hosts主机 {1} 重启！！'.format(now_time, i)
             print(result_v)
-            url_send_mail = 'http://10.100.17.175:5555/basic/msg/send_mail_msg'  # 邮件通知
+            url_send_mail = 'http://x.x.x.x/basic/msg/send_mail_msg'  # 邮件通知
             print("邮件通知结果："+send_msg(url_send_mail, account, result_v))
 
-            url_send_wechat = 'http://10.100.17.175:5555/basic/msg/send_wechat_msg'  # 微信通知
+            url_send_wechat = 'http://x.x.x.x/basic/msg/send_wechat_msg'  # 微信通知
             print("微信通知结果："+send_msg(url_send_wechat, account, result_v))
 
-            url_send_sms = 'http://10.100.17.175:5555/basic/msg/send_sms_msg'  # 短信通知
+            url_send_sms = 'http://x.x.x.x/basic/msg/send_sms_msg'  # 短信通知
             print("短信通知结果："+send_msg(url_send_sms, account, result_v))
